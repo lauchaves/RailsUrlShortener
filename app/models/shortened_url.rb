@@ -12,7 +12,7 @@ class ShortenedUrl < ApplicationRecord
     if old_url.present?
       self.generate_short_url
     else
-      self.short_url = old_url
+      self.short_url = url
     end
   end
 
@@ -31,3 +31,6 @@ class ShortenedUrl < ApplicationRecord
   end
 
 end
+
+
+#http://localhost:3000/shortened/fetch_original_url?short_url=5r2you

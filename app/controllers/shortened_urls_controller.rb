@@ -32,10 +32,12 @@ class ShortenedUrlsController < ApplicationController
     @url = ShortenedUrl.find_by_short_url(params[:short_url])
     host = request.host_with_port
     @original_url = @url.sanitize_url
+    @short_url = host + '/' + @url.short_url
   end
 
   def fetch_original_url
     fetch_url = ShortenedUrl.find_by_short_url(params[:short_url])
+    Rails.logger.debug("My object: #{fetch_url.sanitize_url}")
     redirect_to fetch_url.sanitize_url
   end
 
