@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   get "/shortened/:short_url", to: "shortened_urls#shortened", as: :shortened
   post "shortened_urls/create"
   get "/shortened_urls/fetch_original_url"
-
+  get "/:short_url", to: "shortened_urls#fetch_original_url"
+  get "/shortened_urls/top", to: "shortened_urls#top", as: :top
 end

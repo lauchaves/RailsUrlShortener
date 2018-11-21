@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2018_11_18_200614) do
     t.text "original_url"
     t.string "short_url"
     t.string "sanitize_url"
+    t.integer "use_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

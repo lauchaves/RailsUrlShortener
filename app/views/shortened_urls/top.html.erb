@@ -1,0 +1,21 @@
+<html>
+  <body>
+    <center>
+      <h2>Top 100</h2>
+      <table>
+        <% @fetch_urls.each do |url| %>
+          <tr>
+            <th>URL</td>
+            <th> </td>  
+            <th># Views:</td>  
+          </tr>
+          <tr>
+            <td><%= url.original_url %></td>
+            <td> </td>
+            <td><%= url.use_count %></td>
+          </tr>
+        <% end %>
+      </table>
+    </center>
+  </body>
+</html>

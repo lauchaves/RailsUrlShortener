@@ -27,6 +27,7 @@ Checkout this repo, go to RailsUrlShortener folder, install dependencies, then s
 > cd RailsUrlShortener
 > rake db:migrate
 > rails server
-> Go to localhost:3000
-> Enter an URL
+> Go to http://localhost:3000/
+> Enter an URL and then click the shortUrl to be redirected
+> Get the top 100 -> http://localhost:3000/shortened_urls/top
 ```

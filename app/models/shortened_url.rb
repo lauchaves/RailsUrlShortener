@@ -33,4 +33,3 @@ class ShortenedUrl < ApplicationRecord
 end
 
 
-#http://localhost:3000/shortened/fetch_original_url?short_url=5r2you

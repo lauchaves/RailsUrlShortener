@@ -24,6 +24,8 @@ class ShortenedUrlsController < ApplicationController
       end
     else
       flash[:notice] = "Short link for this address is already saved"
+      fetch_original_url = ShortenedUrl.find_by_original_url(params[:original_url])
+      fetch_original_url.increment!(:use_count)
       redirect_to shortened_path(@url.find_duplicate.short_url)
     end
   end
@@ -37,8 +39,11 @@ class ShortenedUrlsController < ApplicationController
 
   def fetch_original_url
     fetch_url = ShortenedUrl.find_by_short_url(params[:short_url])
-    Rails.logger.debug("My object: #{fetch_url.sanitize_url}")
     redirect_to fetch_url.sanitize_url
+  end
+
+  def top
+    @fetch_urls = ShortenedUrl.order('use_count DESC').limit(100)
   end
 
   private
