@@ -17,6 +17,7 @@ class ShortenedUrlsController < ApplicationController
 
     if @url.new_url?
       if @url.save
+        @url.title_scrape
         redirect_to shortened_path(@url.short_url)
       else
         flash[:error] = "Error:"
@@ -25,7 +26,7 @@ class ShortenedUrlsController < ApplicationController
     else
       flash[:notice] = "Short link for this address is already saved"
       fetch_original_url = ShortenedUrl.find_by_original_url(params[:original_url])
-      fetch_original_url.increment!(:use_count)
+      fetch_original_url.increment!(:clicks)
       redirect_to shortened_path(@url.find_duplicate.short_url)
     end
   end
@@ -43,7 +44,8 @@ class ShortenedUrlsController < ApplicationController
   end
 
   def top
-    @fetch_urls = ShortenedUrl.order('use_count DESC').limit(100)
+    puts ActiveSupport::Dependencies.autoload_paths
+    @fetch_urls = ShortenedUrl.order('clicks DESC').limit(100)
   end
 
   private

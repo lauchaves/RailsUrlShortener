@@ -20,6 +20,10 @@ class ShortenedUrl < ApplicationRecord
     ShortenedUrl.find_by_sanitize_url(self.sanitize_url)
   end
 
+  def title_scrape
+    GetTitle.perform_async(self.id)
+  end
+
   def new_url?
     find_duplicate.nil?
   end
